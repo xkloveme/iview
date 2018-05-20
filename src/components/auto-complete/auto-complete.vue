@@ -7,6 +7,7 @@
         :clearable="clearable"
         :placeholder="placeholder"
         :size="size"
+        :placement="placement"
         filterable
         remote
         auto-complete
@@ -80,6 +81,12 @@
                 type: [Function, Boolean],
                 default: false
             },
+            placement: {
+                validator (value) {
+                    return oneOf(value, ['top', 'bottom']);
+                },
+                default: 'bottom'
+            },
             transfer: {
                 type: Boolean,
                 default: false
@@ -117,7 +124,9 @@
         },
         watch: {
             value (val) {
-                this.disableEmitChange = true;
+                if(this.currentValue !== val){
+                    this.disableEmitChange = true;
+                }
                 this.currentValue = val;
             },
             currentValue (val) {
@@ -141,11 +150,13 @@
                 this.$refs.input.blur();
                 this.$emit('on-select', val);
             },
-            handleFocus () {
+            handleFocus (event) {
                 this.$refs.select.visible = true;
+                this.$emit('on-focus', event);
             },
-            handleBlur () {
+            handleBlur (event) {
                 this.$refs.select.visible = false;
+                this.$emit('on-blur', event);
             },
             handleClear () {
                 if (!this.clearable) return;
