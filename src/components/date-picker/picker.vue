@@ -394,7 +394,7 @@
             handleIconClick () {
                 if (this.showClose) {
                     this.handleClear();
-                } else if (!this.disabled) {
+                } else {
                     this.handleFocus();
                 }
             },

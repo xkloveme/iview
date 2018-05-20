@@ -722,16 +722,8 @@
             document.removeEventListener('keydown', this.handleKeydown);
         },
         watch: {
-            value (val) {
-                this.model = val;
+            model (val) {
                 if (val === '') this.query = '';
-            },
-            label (val) {
-                this.currentLabel = val;
-                this.updateLabel();
-            },
-            model () {
-                this.$emit('input', this.model);
                 this.modelToQuery();
                 if (this.multiple) {
                     if (this.slotChangeDuration) {
