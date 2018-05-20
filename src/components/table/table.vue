@@ -28,7 +28,7 @@
                 <table cellspacing="0" cellpadding="0" border="0">
                     <tbody>
                         <tr>
-                            <td :style="{ 'height': bodyStyle.height }">
+                            <td :style="{ 'height': bodyStyle.height ,'width': tableStyle.width }">
                                 <span v-html="localeNoDataText" v-if="!data || data.length === 0"></span>
                                 <span v-html="localeNoFilteredDataText" v-else></span>
                             </td>
